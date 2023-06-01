@@ -4,10 +4,10 @@ pm.test("Status code is 200", function () {
 pm.test("Response time is less than 200ms", function () {
     pm.expect(pm.response.responseTime).to.be.below(200);
 });
-pm.test("Response contains correct user ID", function () {
+pm.test("Response contains correct post ID", function () {
     const responseData = pm.response.json();
-    const expectedUserId = 1;
-    pm.expect(responseData.id).to.eql(expectedUserId);
+    const expectedPostId = 1;
+    pm.expect(responseData.id).to.eql(expectedPostId);
 });
 const schema = {
     "type": "object",
