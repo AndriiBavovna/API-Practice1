@@ -5,8 +5,8 @@ pm.test("Response time is less than 200ms", function () {
     pm.expect(pm.response.responseTime).to.be.below(200);
 });
 pm.test("Response contains correct user ID", function () {
-    var responseData = pm.response.json();
-    var expectedUserId = 1;
+    const responseData = pm.response.json();
+    const expectedUserId = 1;
     pm.expect(responseData.id).to.eql(expectedUserId);
 });
 const schema = {
