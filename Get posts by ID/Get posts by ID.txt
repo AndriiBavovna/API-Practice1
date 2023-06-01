@@ -1,0 +1,38 @@
+pm.test("Status code is 200", function () {
+    pm.response.to.have.status(200);
+});
+pm.test("Response time is less than 200ms", function () {
+    pm.expect(pm.response.responseTime).to.be.below(200);
+});
+pm.test("Response contains correct user ID", function () {
+    var responseData = pm.response.json();
+    var expectedUserId = 1;
+    pm.expect(responseData.id).to.eql(expectedUserId);
+});
+const schema = {
+    "type": "object",
+    "required": [
+        "userId",
+        "id",
+        "title",
+        "body"
+    ],
+    "properties": {
+        "userId": {
+            "type": "number"
+        },
+        "id": {
+            "type": "number"
+        },
+        "title": {
+            "type": "string"
+        },
+        "body": {
+            "type": "string"
+        },
+    },
+    "additionalProperties": false
+}
+pm.test("Schema is valid", () => {
+    pm.expect(pm.response.json()).to.have.jsonSchema(schema);
+});
