@@ -1,0 +1,21 @@
+pm.test("Response time is less than 300ms", function () {
+    pm.expect(pm.response.responseTime).to.be.below(300);
+});
+pm.test("Successful POST request", function () {
+    pm.expect(pm.response.code).to.be.oneOf([201, 202]);
+});
+const schema = {
+    "type": "object",
+    "required": [
+        "id"
+    ],
+    "properties": {
+        "id": {
+            "type": "number"
+        },
+    },
+    "additionalProperties": false
+}
+pm.test("Schema is valid", () => {
+    pm.expect(pm.response.json()).to.have.jsonSchema(schema);
+});
